@@ -6,12 +6,14 @@ import {
   ArrowLeft,
   CheckCircle2,
   CheckCircle,
-  ArrowRight,
+  ArrowUpRight,
   ShieldCheck,
   Sparkles,
   Layers,
   FileCheck,
-  Building,
+  Building2,
+  Clock,
+  ChevronRight,
 } from 'lucide-react';
 import { getServiceBySlug, getServices, getProjects } from '@/lib/data';
 import ContactForm from '@/components/ContactForm';
@@ -53,67 +55,79 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
   });
 
   return (
-    <div className="py-12 sm:py-16 space-y-20">
-      {/* 1. Breadcrumbs & Header */}
+    <div className="pt-28 sm:pt-36 pb-24 space-y-20 bg-[#080808] text-white min-h-screen">
+      {/* 1. Breadcrumbs & Studio Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <NextLink
-          href="/services"
-          className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-gold-400 mb-6 transition-colors"
-        >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          <span>Back to All 21 Services</span>
-        </NextLink>
+        <div className="flex flex-wrap items-center justify-between gap-4 text-[10px] font-mono tracking-widest text-zinc-500 uppercase border-b border-zinc-900 pb-4 mb-8">
+          <NextLink
+            href="/services"
+            className="flex items-center gap-1.5 text-zinc-400 hover:text-gold-400 transition-colors"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>All 21 Disciplines</span>
+          </NextLink>
+
+          <span className="hidden sm:inline">DISCIPLINE SPECIFICATION · JM CREATIONS</span>
+          <span className="text-gold-500/80">[ MANAGED EXECUTION ]</span>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-8 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-[11px] font-bold text-gold-500 uppercase tracking-wider">
+          <div className="lg:col-span-8 space-y-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-gold-500/30 text-[11px] font-mono text-gold-400 uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-gold-500" />
               <span>{service.category?.name || 'Integrated Solution'}</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.05]">
               {service.title}
             </h1>
 
-            <p className="text-zinc-300 text-base sm:text-lg leading-relaxed max-w-3xl">
+            <p className="text-zinc-300 text-base sm:text-lg leading-relaxed max-w-3xl font-sans">
               {service.excerpt}
             </p>
           </div>
 
-          <div className="lg:col-span-4 p-6 rounded-2xl bg-[#121214] border border-zinc-800 space-y-4">
-            <div className="text-xs font-semibold uppercase tracking-wider text-gold-500">
-              Service Fast Facts
+          {/* Service Fast Facts Card */}
+          <div className="lg:col-span-4 p-8 rounded-3xl bg-[#121212] border border-zinc-800 space-y-4">
+            <div className="text-xs font-mono uppercase tracking-widest text-gold-500">
+              Discipline Metadata
             </div>
-            <div className="space-y-2.5 text-xs text-zinc-300">
-              <div className="flex justify-between py-1.5 border-b border-zinc-800">
-                <span className="text-zinc-500">Classification:</span>
-                <span className="font-medium text-white">{service.category?.name}</span>
+            <div className="space-y-3 text-xs font-mono text-zinc-300">
+              <div className="flex justify-between py-2 border-b border-zinc-800/80">
+                <span className="text-zinc-500">Pillar:</span>
+                <span className="text-white font-medium">{service.category?.name}</span>
               </div>
-              <div className="flex justify-between py-1.5 border-b border-zinc-800">
-                <span className="text-zinc-500">Execution Model:</span>
-                <span className="font-medium text-white">Full-Stack Managed</span>
+              <div className="flex justify-between py-2 border-b border-zinc-800/80">
+                <span className="text-zinc-500">Governance:</span>
+                <span className="text-white font-medium">Jina Groups</span>
               </div>
-              <div className="flex justify-between py-1.5 border-b border-zinc-800">
-                <span className="text-zinc-500">Provider:</span>
-                <span className="font-medium text-white">JM Creations</span>
+              <div className="flex justify-between py-2 border-b border-zinc-800/80">
+                <span className="text-zinc-500">Delivery:</span>
+                <span className="text-white font-medium">Full-Stack Managed</span>
               </div>
             </div>
 
             <a
               href="#service-enquiry"
-              className="w-full mt-4 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-wider text-xs shadow-gold-glow flex items-center justify-center gap-2 transition-colors block text-center"
+              className="w-full mt-4 py-3.5 rounded-full bg-gold-500 hover:bg-gold-400 text-black font-display font-bold uppercase tracking-wider text-xs shadow-gold-glow flex items-center justify-center gap-2 transition-all block text-center"
             >
-              <span>Enquire for this Service</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>Initiate This Project</span>
+              <ChevronRight className="w-4 h-4" />
             </a>
           </div>
         </div>
       </div>
 
-      {/* 2. Detailed Service Description */}
+      {/* 2. Detailed Service Overview */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 sm:p-10 rounded-3xl bg-zinc-900/60 border border-zinc-800 space-y-6">
-          <h2 className="text-2xl font-bold text-white tracking-tight">Overview & Strategic Value</h2>
-          <div className="text-zinc-300 text-sm sm:text-base leading-relaxed space-y-4">
+        <div className="p-8 sm:p-12 rounded-3xl bg-[#121212] border border-zinc-800/80 space-y-6">
+          <div className="text-[10px] font-mono uppercase tracking-widest text-gold-500">
+            STRATEGIC OVERVIEW & VALUE
+          </div>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            Why this discipline matters for your enterprise
+          </h2>
+          <div className="text-zinc-300 text-sm sm:text-base leading-relaxed space-y-4 font-sans max-w-4xl">
             <p>{service.description}</p>
           </div>
         </div>
@@ -123,14 +137,14 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Key Benefits */}
-          <div className="p-8 rounded-3xl bg-[#121214] border border-zinc-800 space-y-6">
-            <h3 className="text-xl font-bold text-white flex items-center gap-2.5">
+          <div className="p-8 sm:p-10 rounded-3xl bg-[#121212] border border-zinc-800/80 space-y-6">
+            <div className="flex items-center gap-2.5">
               <Sparkles className="w-5 h-5 text-gold-500" />
-              <span>Key Business Benefits</span>
-            </h3>
+              <h3 className="font-display text-xl font-bold text-white">Commercial Benefits</h3>
+            </div>
             <ul className="space-y-4">
               {service.benefits.map((benefit, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm text-zinc-300">
+                <li key={i} className="flex items-start gap-3 text-xs sm:text-sm text-zinc-300">
                   <CheckCircle className="w-4 h-4 text-gold-500 mt-0.5 shrink-0" />
                   <span>{benefit}</span>
                 </li>
@@ -139,14 +153,14 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           </div>
 
           {/* Deliverables Checklist */}
-          <div className="p-8 rounded-3xl bg-[#121214] border border-zinc-800 space-y-6">
-            <h3 className="text-xl font-bold text-white flex items-center gap-2.5">
+          <div className="p-8 sm:p-10 rounded-3xl bg-[#121212] border border-zinc-800/80 space-y-6">
+            <div className="flex items-center gap-2.5">
               <FileCheck className="w-5 h-5 text-gold-500" />
-              <span>Structured Deliverables</span>
-            </h3>
+              <h3 className="font-display text-xl font-bold text-white">Guaranteed Deliverables</h3>
+            </div>
             <ul className="space-y-4">
               {service.deliverables.map((deliverable, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm text-zinc-300">
+                <li key={i} className="flex items-start gap-3 text-xs sm:text-sm text-zinc-300">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
                   <span>{deliverable}</span>
                 </li>
@@ -156,26 +170,28 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         </div>
       </section>
 
-      {/* 4. Process Steps */}
+      {/* 4. Execution Methodology Stages */}
       {service.process_steps && service.process_steps.length > 0 && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-10">
-            <div className="text-xs font-bold text-gold-500 uppercase tracking-widest mb-2">
-              Implementation Timeline
+          <div className="mb-8">
+            <div className="text-[10px] font-mono text-gold-500 uppercase tracking-widest mb-1">
+              EXECUTION BLUEPRINT
             </div>
-            <h3 className="text-2xl font-bold text-white">Our Execution Methodology</h3>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-white">
+              Phased Implementation Cadence
+            </h3>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {service.process_steps.map((step, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800 text-left relative"
+                className="p-6 rounded-2xl bg-[#121212] border border-zinc-800 text-left relative flex flex-col justify-between"
               >
-                <div className="text-gold-500 font-mono text-sm font-bold mb-2">
-                  Stage 0{idx + 1}
+                <div className="text-gold-500 font-mono text-xs font-bold mb-3">
+                  STAGE 0{idx + 1}
                 </div>
-                <div className="text-sm font-semibold text-white">{step}</div>
+                <div className="font-display text-sm font-bold text-white leading-snug">{step}</div>
               </div>
             ))}
           </div>
@@ -185,23 +201,27 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       {/* 5. Related Projects (if any) */}
       {relatedProjects.length > 0 && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-6">
-            <h3 className="text-xl font-bold text-white">Related Client Work</h3>
-            <p className="text-xs text-zinc-400">Verified engagements featuring this service.</p>
+          <div className="mb-8">
+            <div className="text-[10px] font-mono text-gold-500 uppercase tracking-widest mb-1">
+              EVIDENCE OF CAPABILITY
+            </div>
+            <h3 className="font-display text-2xl font-bold text-white">Related Verified Deployments</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {relatedProjects.map((p) => (
-              <div key={p.id} className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
-                <div className="text-xs text-gold-500 font-bold mb-1">{p.client?.name}</div>
-                <h4 className="text-base font-bold text-white mb-2">{p.title}</h4>
-                <p className="text-xs text-zinc-400 mb-4">{p.project_summary}</p>
+              <div key={p.id} className="p-8 rounded-3xl bg-[#121212] border border-zinc-800 flex flex-col justify-between">
+                <div>
+                  <div className="text-xs font-mono text-gold-500 font-bold mb-2">{p.client?.name}</div>
+                  <h4 className="font-display text-lg font-bold text-white mb-2">{p.title}</h4>
+                  <p className="text-xs text-zinc-400 mb-6 line-clamp-2">{p.project_summary}</p>
+                </div>
                 <NextLink
                   href={`/portfolio/${p.slug}`}
-                  className="text-xs font-semibold text-gold-400 hover:text-gold-300 flex items-center gap-1"
+                  className="text-xs font-mono font-medium text-white hover:text-gold-400 flex items-center gap-1.5 group"
                 >
-                  <span>View Case Study</span>
-                  <ArrowRight className="w-3 h-3" />
+                  <span>Examine Case Study</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-gold-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </NextLink>
               </div>
             ))}
@@ -211,13 +231,16 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
       {/* 6. Dedicated Service Enquiry Portal */}
       <section id="service-enquiry" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-8 p-8 sm:p-12 rounded-3xl bg-[#121212] border border-zinc-800">
           <div className="text-center space-y-2">
-            <h3 className="text-2xl font-bold text-white tracking-tight">
-              Request a Consultation for {service.title}
+            <div className="text-[10px] font-mono uppercase tracking-widest text-gold-500">
+              DISCIPLINE INTAKE
+            </div>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Request Project Commencement for {service.title}
             </h3>
             <p className="text-zinc-400 text-xs sm:text-sm">
-              Our specialists will review your requirements and provide tailored strategic recommendations.
+              Our specialists will review your requirements and provide tailored strategic recommendations within 24 hours.
             </p>
           </div>
 

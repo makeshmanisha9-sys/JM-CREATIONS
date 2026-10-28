@@ -1,6 +1,6 @@
 import http from 'http';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'http://127.0.0.1:3000';
 
 async function runTests() {
   console.log('🚀 Running JM Creations Full-Stack Verification Suite...\n');

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Metadata } from 'next';
 import NextLink from 'next/link';
-import { BookOpen, ArrowRight, Clock, User, Calendar } from 'lucide-react';
+import { BookOpen, ArrowUpRight, Clock, User, Calendar, Sparkles } from 'lucide-react';
 import { getBlogPosts } from '@/lib/data';
 
 export const metadata: Metadata = {
-  title: 'Insights & Perspectives | JM Creations',
+  title: 'Insights & Perspectives | JM Creations Journal',
   description:
     'Strategic analysis, digital growth frameworks, and practical perspectives on enterprise scaling from the JM Creations editorial team.',
 };
@@ -14,57 +14,80 @@ export default async function BlogPage() {
   const posts = await getBlogPosts({ includeUnpublished: false });
 
   return (
-    <div className="py-12 sm:py-16 space-y-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900 border border-gold-500/30 text-xs text-gold-400 font-medium mb-4">
-          <BookOpen className="w-3.5 h-3.5 text-gold-500" />
-          <span>Editorial & Case Insights</span>
+    <div className="pt-28 sm:pt-36 pb-24 space-y-16 bg-[#080808] text-white min-h-screen">
+      {/* Studio Header Ribbon */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap items-center justify-between gap-4 text-[10px] font-mono tracking-widest text-zinc-500 uppercase border-b border-zinc-900 pb-4 mb-10">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold-500" />
+            <span className="text-zinc-300">DISPATCHES / EDITORIAL PERSPECTIVES</span>
+          </div>
+          <span className="hidden md:inline">ANALYSIS · ENGINEERING · BRANDING · STRATEGY</span>
+          <span className="text-gold-500/80">[ PRACTICAL ESSAYS ]</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Strategic Insights & Perspectives
-        </h1>
-        <p className="mt-4 text-zinc-300 text-sm sm:text-base max-w-2xl mx-auto">
-          Articles on digital marketing, business development, web technology, and commercial growth.
-        </p>
+
+        {/* Page Header */}
+        <div className="max-w-4xl space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-gold-500/30 text-[11px] font-mono text-gold-400">
+            <Sparkles className="w-3.5 h-3.5 text-gold-500" />
+            <span>Studio Perspectives</span>
+          </div>
+
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.04]">
+            STRATEGIC <span className="gold-text-gradient">INSIGHTS</span> &amp; ESSAYS.
+          </h1>
+
+          <p className="text-zinc-400 text-sm sm:text-base lg:text-lg leading-relaxed pt-2 max-w-3xl font-sans">
+            Thought leadership on digital marketing, business formation, modern web engineering, and commercial customer acquisition from the team at JM Creations.
+          </p>
+        </div>
       </div>
 
+      {/* Blog Cards Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post) => (
-            <article
-              key={post.id}
-              className="bg-[#121214] border border-zinc-800 rounded-2xl p-7 flex flex-col justify-between hover:border-gold-500/40 transition-all duration-300 group"
-            >
-              <div>
-                <div className="flex items-center justify-between text-xs text-zinc-400 mb-4">
-                  <span className="flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-gold-500" />
-                    <span>{post.read_time}</span>
+          {posts.map((post, index) => {
+            const numIndex = String(index + 1).padStart(2, '0');
+            return (
+              <article
+                key={post.id || post.slug}
+                className="group p-8 rounded-3xl bg-[#121212] border border-zinc-800/80 hover:border-gold-500/50 hover:bg-[#151515] transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between text-xs font-mono text-zinc-500 mb-6">
+                    <span className="text-gold-500 font-semibold">[ {numIndex} ]</span>
+                    <span className="flex items-center gap-1.5 text-zinc-400">
+                      <Clock className="w-3.5 h-3.5 text-gold-500" />
+                      <span>{post.read_time || '5 min read'}</span>
+                    </span>
+                  </div>
+
+                  <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800 text-zinc-300 mb-4 inline-block">
+                    {post.category?.name || 'Perspective'}
                   </span>
-                  <span>{new Date(post.published_at || Date.now()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+
+                  <h2 className="font-display text-xl font-bold text-white mb-3 group-hover:text-gold-400 transition-colors leading-snug">
+                    {post.title}
+                  </h2>
+
+                  <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed mb-6 font-sans line-clamp-3">
+                    {post.excerpt}
+                  </p>
                 </div>
 
-                <h2 className="text-xl font-bold text-white mb-3 group-hover:text-gold-400 transition-colors">
-                  {post.title}
-                </h2>
-
-                <p className="text-xs text-zinc-400 leading-relaxed mb-6">
-                  {post.excerpt}
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-zinc-800 flex items-center justify-between">
-                <span className="text-[11px] text-zinc-400">{post.author_name}</span>
-                <NextLink
-                  href={`/blog/${post.slug}`}
-                  className="text-xs font-semibold text-gold-400 hover:text-gold-300 flex items-center gap-1.5"
-                >
-                  <span>Read Article</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </NextLink>
-              </div>
-            </article>
-          ))}
+                <div className="pt-6 border-t border-zinc-800/60 flex items-center justify-between text-xs font-mono">
+                  <span className="text-zinc-400">{post.author_name}</span>
+                  <NextLink
+                    href={`/blog/${post.slug}`}
+                    className="text-white group-hover:text-gold-400 flex items-center gap-1.5 transition-colors font-medium"
+                  >
+                    <span>Read Article</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-gold-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </NextLink>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -6,6 +6,9 @@ import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import AnalyticsTracker from '@/components/AnalyticsTracker';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import CinematicPreloader from '@/components/CinematicPreloader';
+import CustomCursor from '@/components/CustomCursor';
+import NoiseOverlay from '@/components/NoiseOverlay';
 import { getSiteSettings, getSocialLinks } from '@/lib/data';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -15,23 +18,22 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(siteUrl),
     title: {
-      default: `${settings.company_name} | Integrated Business & Digital Solutions`,
+      default: `${settings.company_name} | Integrated Business, Creative & Digital Solutions`,
       template: `%s | ${settings.company_name}`,
     },
     description: settings.hero_subheadline,
     keywords: [
       'JM Creations',
-      'Jina Groups of Company',
+      'Jina Groups of Company Pvt. Ltd.',
       'Business Consulting',
       'Startup Consulting',
       'Branding and Logo Design',
-      'Website Development',
-      'Digital Marketing',
-      'Google Ads',
-      'Meta Advertising',
+      'Website Development Next.js',
+      'Digital Marketing Strategy',
+      'Google Ads Meta Advertising',
       'Lead Generation',
-      'Tamil Nadu Business Services',
-      'Commercial Production',
+      'Commercial Photography and Videography',
+      'Tamil Nadu Digital Agency',
     ],
     authors: [{ name: 'JM Creations' }],
     creator: 'JM Creations (Jina Groups of Company Pvt. Ltd.)',
@@ -68,18 +70,28 @@ export default async function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className="min-h-screen bg-[#0A0A0A] text-zinc-100 flex flex-col antialiased selection:bg-gold-500 selection:text-black">
+      <body className="min-h-screen bg-[#080808] text-zinc-100 flex flex-col antialiased selection:bg-gold-500 selection:text-black relative">
+        {/* Preloader & Ambient Studio Utilities */}
+        <CinematicPreloader />
+        <CustomCursor />
+        <NoiseOverlay />
+
+        {/* Analytics */}
         <GoogleAnalytics />
         <Suspense fallback={null}>
           <AnalyticsTracker />
         </Suspense>
 
+        {/* Global Architectural Navigation */}
         <Navbar settings={settings} />
 
-        <main className="flex-grow pt-20">{children}</main>
+        {/* Main Body */}
+        <main className="flex-grow">{children}</main>
 
+        {/* Global Architectural Footer */}
         <Footer settings={settings} socialLinks={socialLinks} />
 
+        {/* Floating WhatsApp Quick Connect */}
         <FloatingWhatsApp
           whatsappNumber={settings.whatsapp}
           prefillMessage={settings.whatsapp_prefill_message}

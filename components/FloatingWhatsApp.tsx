@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import { MessageCircle } from 'lucide-react';
 
 interface FloatingWhatsAppProps {
@@ -12,6 +13,11 @@ export default function FloatingWhatsApp({
   whatsappNumber = '919042986355',
   prefillMessage = 'Hello JM Creations, I would like to know more about your services.',
 }: FloatingWhatsAppProps) {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
   const cleanNumber = whatsappNumber.replace(/[^0-9]/g, '');
   const encodedText = encodeURIComponent(prefillMessage);
   const whatsappUrl = `https://wa.me/${cleanNumber}?text=${encodedText}`;

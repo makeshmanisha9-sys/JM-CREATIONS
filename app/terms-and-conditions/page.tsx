@@ -12,7 +12,7 @@ export default async function TermsAndConditionsPage() {
   const settings = await getSiteSettings();
 
   return (
-    <div className="py-12 sm:py-16">
+    <div className="pt-28 sm:pt-36 pb-24 bg-[#080808] text-white min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-gold-500/30 text-xs text-gold-400">
