@@ -59,7 +59,7 @@ export default function ServicesWorldScene({ services }: ServicesWorldSceneProps
   return (
     <section
       id="services-scene"
-      className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#080808] text-white border-t border-zinc-900 overflow-hidden"
+      className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-transparent text-white border-t border-zinc-900/80 overflow-hidden"
     >
       {/* Background radial atmosphere */}
       <div className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-gold-500/5 blur-[160px] rounded-full pointer-events-none" />

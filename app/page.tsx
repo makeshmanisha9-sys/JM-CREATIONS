@@ -26,7 +26,7 @@ export default async function HomePage() {
   const blogPosts = await getBlogPosts();
 
   return (
-    <div className="flex flex-col w-full overflow-hidden bg-[#080808]">
+    <div className="flex flex-col w-full overflow-hidden bg-transparent">
       {/* SCENE 01 / DISCOVER — Hero with 3D Kinetic Object & Architectural Typography */}
       <HeroScene settings={settings} />
 

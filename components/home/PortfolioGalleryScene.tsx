@@ -29,7 +29,7 @@ export default function PortfolioGalleryScene({ projects, clients }: PortfolioGa
   return (
     <section
       id="portfolio-scene"
-      className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#0C0C0C] text-white border-t border-zinc-900 overflow-hidden"
+      className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-transparent text-white border-t border-zinc-900/80 overflow-hidden"
     >
       {/* Narrative Section Header */}
       <div className="max-w-7xl mx-auto mb-16">

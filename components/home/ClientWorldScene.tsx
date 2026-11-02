@@ -83,7 +83,7 @@ export default function ClientWorldScene({ clients }: ClientWorldSceneProps) {
   return (
     <section
       id="clients-scene"
-      className="relative py-24 sm:py-32 bg-[#080808] text-white border-t border-zinc-900 overflow-hidden"
+      className="relative py-24 sm:py-32 bg-transparent text-white border-t border-zinc-900/80 overflow-hidden"
     >
       {/* Background Lighting */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gold-500/5 blur-[140px] pointer-events-none" />

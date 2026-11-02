@@ -65,7 +65,13 @@ body {
 }
 
 /* Transparent Section Pass-Through for 3D Background Ecosystem */
-section:not(#brand-story) {
+section:not(#brand-story),
+main:not(.admin-main) section:not(#brand-story),
+main:not(.admin-main) .bg-\[\#080808\],
+main:not(.admin-main) .bg-\[\#070707\],
+main:not(.admin-main) .bg-\[\#090909\],
+main:not(.admin-main) .bg-\[\#0B0B0B\],
+main:not(.admin-main) .bg-\[\#0C0C0C\] {
   background-color: transparent !important;
 }
 

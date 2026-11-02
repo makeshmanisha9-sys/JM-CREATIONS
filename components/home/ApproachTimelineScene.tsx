@@ -103,7 +103,7 @@ export default function ApproachTimelineScene() {
   return (
     <section
       id="approach-scene"
-      className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#090909] text-white border-t border-zinc-900 overflow-hidden"
+      className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-transparent text-white border-t border-zinc-900/80 overflow-hidden"
     >
       {/* Decorative ambient lighting */}
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-gold-500/5 blur-[160px] rounded-full pointer-events-none" />

@@ -17,7 +17,7 @@ export default function InteractiveProjectStarter({
   return (
     <section
       id="contact-starter"
-      className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#070707] text-white border-t border-zinc-900 overflow-hidden"
+      className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-transparent text-white border-t border-zinc-900/80 overflow-hidden"
     >
       {/* Background Lighting */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-gold-500/5 blur-[160px] rounded-full pointer-events-none" />

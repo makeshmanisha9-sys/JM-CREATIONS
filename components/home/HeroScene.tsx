@@ -13,7 +13,7 @@ interface HeroSceneProps {
 
 export default function HeroScene({ settings }: HeroSceneProps) {
   return (
-    <section className="relative min-h-screen flex flex-col justify-between pt-12 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#080808]">
+    <section className="relative min-h-screen flex flex-col justify-between pt-12 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-transparent">
       {/* Background Subtle Gradient & Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-dark-radial pointer-events-none" />
 

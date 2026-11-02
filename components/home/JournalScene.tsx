@@ -17,7 +17,7 @@ export default function JournalScene({ posts }: JournalSceneProps) {
   return (
     <section
       id="journal-scene"
-      className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#0B0B0B] text-white border-t border-zinc-900 overflow-hidden"
+      className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-transparent text-white border-t border-zinc-900/80 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
