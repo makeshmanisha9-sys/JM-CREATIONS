@@ -9,6 +9,8 @@ import GoogleAnalytics from '@/components/GoogleAnalytics';
 import CinematicPreloader from '@/components/CinematicPreloader';
 import CustomCursor from '@/components/CustomCursor';
 import NoiseOverlay from '@/components/NoiseOverlay';
+import DigitalMarketingEcosystem from '@/components/three/DigitalMarketingEcosystem';
+import FuturisticGlowOverlays from '@/components/three/FuturisticGlowOverlays';
 import { getSiteSettings, getSocialLinks } from '@/lib/data';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -76,6 +78,10 @@ export default async function RootLayout({
         <CustomCursor />
         <NoiseOverlay />
 
+        {/* Live 3D Digital Marketing Ecosystem & Futuristic Lighting Overlays */}
+        <DigitalMarketingEcosystem />
+        <FuturisticGlowOverlays />
+
         {/* Analytics */}
         <GoogleAnalytics />
         <Suspense fallback={null}>
@@ -86,7 +92,7 @@ export default async function RootLayout({
         <Navbar settings={settings} />
 
         {/* Main Body */}
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow relative z-10">{children}</main>
 
         {/* Global Architectural Footer */}
         <Footer settings={settings} socialLinks={socialLinks} />
