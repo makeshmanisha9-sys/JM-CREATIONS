@@ -26,77 +26,105 @@ import {
   AnalyticsEvent,
 } from './types';
 
-// In-memory runtime cache for development/demo fallback
-let memoryEnquiries: Enquiry[] = [
-  {
-    id: 'enq-sample-1',
-    enquiry_code: 'JMC-2024-001',
-    full_name: 'Karthik Raja',
-    email: 'karthik@enterpriseventures.in',
-    phone: '+91 98401 23456',
-    company_name: 'Enterprise Ventures',
-    service_name: 'Lead Generation',
-    budget_range: '₹50,000 - ₹1,00,000',
-    message: 'We are looking to scale our B2B commercial outreach across industrial clients in Tamil Nadu and require a structured lead generation funnel.',
-    status: 'In Progress',
-    created_at: new Date(Date.now() - 86400000 * 2).toISOString(),
-    notes: [
-      {
-        id: 'note-1',
-        enquiry_id: 'enq-sample-1',
-        author_email: 'admin@jmcreations.com',
-        note: 'Introductory discovery call conducted. Preparing proposal for lead funnel setup.',
-        created_at: new Date(Date.now() - 86400000).toISOString(),
-      },
-    ],
-  },
-  {
-    id: 'enq-sample-2',
-    enquiry_code: 'JMC-2024-002',
-    full_name: 'Ananya Ramesh',
-    email: 'ananya@rameshfoods.com',
-    phone: '+91 94432 10987',
-    company_name: 'Ramesh Gourmet Foods',
-    service_name: 'Product Photography and Videography',
-    budget_range: '₹25,000 - ₹50,000',
-    message: 'Need studio product shoot and short promotional reels for our packaged sweets range ahead of festive season.',
-    status: 'New',
-    created_at: new Date(Date.now() - 3600000 * 6).toISOString(),
-    notes: [],
-  },
-];
+// In-memory runtime cache for development/demo fallback across Next.js bundles
+interface GlobalJMStore {
+  __jm_memoryEnquiries?: Enquiry[];
+  __jm_memoryAnalyticsEvents?: AnalyticsEvent[];
+  __jm_memorySettings?: SiteSettings;
+  __jm_memoryServices?: Service[];
+  __jm_memoryClients?: Client[];
+  __jm_memoryProjects?: Project[];
+  __jm_memoryBlogPosts?: BlogPost[];
+  __jm_memoryCareers?: Career[];
+  __jm_memoryTestimonials?: Testimonial[];
+}
 
-let memoryAnalyticsEvents: AnalyticsEvent[] = [
-  {
-    event_name: 'page_view',
-    event_category: 'navigation',
-    page_path: '/',
-    page_title: 'JM Creations | Business Solutions & Digital Services',
-    created_at: new Date(Date.now() - 3600000 * 4).toISOString(),
-  },
-  {
-    event_name: 'whatsapp_click',
-    event_category: 'conversion',
-    page_path: '/services',
-    page_title: 'Our Services | JM Creations',
-    created_at: new Date(Date.now() - 3600000 * 2).toISOString(),
-  },
-  {
-    event_name: 'contact_form_submit',
-    event_category: 'conversion',
-    page_path: '/contact',
-    page_title: 'Contact Us | JM Creations',
-    created_at: new Date(Date.now() - 3600000).toISOString(),
-  },
-];
+const g = globalThis as unknown as GlobalJMStore;
 
-let memorySettings: SiteSettings = { ...INITIAL_SETTINGS };
-let memoryServices: Service[] = [...INITIAL_SERVICES];
-let memoryClients: Client[] = [...INITIAL_CLIENTS];
-let memoryProjects: Project[] = [...INITIAL_PROJECTS];
-let memoryBlogPosts: BlogPost[] = [...INITIAL_BLOG_POSTS];
-let memoryCareers: Career[] = [...INITIAL_CAREERS];
-let memoryTestimonials: Testimonial[] = [...INITIAL_TESTIMONIALS];
+if (!g.__jm_memoryEnquiries) {
+  g.__jm_memoryEnquiries = [
+    {
+      id: 'enq-sample-1',
+      enquiry_code: 'JMC-2024-001',
+      full_name: 'Karthik Raja',
+      email: 'karthik@enterpriseventures.in',
+      phone: '+91 98401 23456',
+      company_name: 'Enterprise Ventures',
+      service_name: 'Lead Generation',
+      budget_range: '₹50,000 - ₹1,00,000',
+      message: 'We are looking to scale our B2B commercial outreach across industrial clients in Tamil Nadu and require a structured lead generation funnel.',
+      status: 'In Progress',
+      created_at: new Date(Date.now() - 86400000 * 2).toISOString(),
+      notes: [
+        {
+          id: 'note-1',
+          enquiry_id: 'enq-sample-1',
+          author_email: 'admin@jmcreations.com',
+          note: 'Introductory discovery call conducted. Preparing proposal for lead funnel setup.',
+          created_at: new Date(Date.now() - 86400000).toISOString(),
+        },
+      ],
+    },
+    {
+      id: 'enq-sample-2',
+      enquiry_code: 'JMC-2024-002',
+      full_name: 'Ananya Ramesh',
+      email: 'ananya@rameshfoods.com',
+      phone: '+91 94432 10987',
+      company_name: 'Ramesh Gourmet Foods',
+      service_name: 'Product Photography and Videography',
+      budget_range: '₹25,000 - ₹50,000',
+      message: 'Need studio product shoot and short promotional reels for our packaged sweets range ahead of festive season.',
+      status: 'New',
+      created_at: new Date(Date.now() - 3600000 * 6).toISOString(),
+      notes: [],
+    },
+  ];
+}
+
+if (!g.__jm_memoryAnalyticsEvents) {
+  g.__jm_memoryAnalyticsEvents = [
+    {
+      event_name: 'page_view',
+      event_category: 'navigation',
+      page_path: '/',
+      page_title: 'JM Creations | Business Solutions & Digital Services',
+      created_at: new Date(Date.now() - 3600000 * 4).toISOString(),
+    },
+    {
+      event_name: 'whatsapp_click',
+      event_category: 'conversion',
+      page_path: '/services',
+      page_title: 'Our Services | JM Creations',
+      created_at: new Date(Date.now() - 3600000 * 2).toISOString(),
+    },
+    {
+      event_name: 'contact_form_submit',
+      event_category: 'conversion',
+      page_path: '/contact',
+      page_title: 'Contact Us | JM Creations',
+      created_at: new Date(Date.now() - 3600000).toISOString(),
+    },
+  ];
+}
+
+if (!g.__jm_memorySettings) g.__jm_memorySettings = { ...INITIAL_SETTINGS };
+if (!g.__jm_memoryServices) g.__jm_memoryServices = [...INITIAL_SERVICES];
+if (!g.__jm_memoryClients) g.__jm_memoryClients = [...INITIAL_CLIENTS];
+if (!g.__jm_memoryProjects) g.__jm_memoryProjects = [...INITIAL_PROJECTS];
+if (!g.__jm_memoryBlogPosts) g.__jm_memoryBlogPosts = [...INITIAL_BLOG_POSTS];
+if (!g.__jm_memoryCareers) g.__jm_memoryCareers = [...INITIAL_CAREERS];
+if (!g.__jm_memoryTestimonials) g.__jm_memoryTestimonials = [...INITIAL_TESTIMONIALS];
+
+const memoryEnquiries = g.__jm_memoryEnquiries;
+const memoryAnalyticsEvents = g.__jm_memoryAnalyticsEvents;
+const memorySettings = g.__jm_memorySettings;
+const memoryServices = g.__jm_memoryServices;
+const memoryClients = g.__jm_memoryClients;
+const memoryProjects = g.__jm_memoryProjects;
+const memoryBlogPosts = g.__jm_memoryBlogPosts;
+const memoryCareers = g.__jm_memoryCareers;
+const memoryTestimonials = g.__jm_memoryTestimonials;
 
 // 1. SITE SETTINGS
 export async function getSiteSettings(): Promise<SiteSettings> {
