@@ -9,7 +9,7 @@ import GoogleAnalytics from '@/components/GoogleAnalytics';
 import CinematicPreloader from '@/components/CinematicPreloader';
 import CustomCursor from '@/components/CustomCursor';
 import NoiseOverlay from '@/components/NoiseOverlay';
-import DigitalMarketingEcosystem from '@/components/three/DigitalMarketingEcosystem';
+import CinematicProductionBackground from '@/components/three/CinematicProductionBackground';
 import FuturisticGlowOverlays from '@/components/three/FuturisticGlowOverlays';
 import { getSiteSettings, getSocialLinks } from '@/lib/data';
 
@@ -78,8 +78,8 @@ export default async function RootLayout({
         <CustomCursor />
         <NoiseOverlay />
 
-        {/* Live 3D Digital Marketing Ecosystem & Futuristic Lighting Overlays */}
-        <DigitalMarketingEcosystem />
+        {/* Live 3D Cinematic Production Background & Studio Atmosphere */}
+        <CinematicProductionBackground />
         <FuturisticGlowOverlays />
 
         {/* Analytics */}
