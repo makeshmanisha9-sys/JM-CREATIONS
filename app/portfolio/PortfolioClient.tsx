@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import NextLink from 'next/link';
+import Image from 'next/image';
 import { Search, ArrowUpRight, CheckCircle2, Clock, Building2, Filter, Sparkles } from 'lucide-react';
 import { Project } from '@/lib/types';
 
@@ -109,24 +110,41 @@ export default function PortfolioClient({ initialProjects }: PortfolioClientProp
                 key={project.id || project.slug}
                 className="group rounded-3xl bg-[#121212] border border-zinc-800/80 hover:border-gold-500/50 hover:bg-[#151515] transition-all duration-300 flex flex-col justify-between overflow-hidden"
               >
-                {/* Visual Header with Client Monogram */}
-                <div className="p-8 bg-gradient-to-br from-zinc-950 to-[#101010] border-b border-zinc-800/60 relative">
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800">
+                {/* Visual Header with Real Image or Client Monogram */}
+                <div className="relative aspect-[16/10] w-full bg-zinc-950 p-6 sm:p-8 flex flex-col justify-between overflow-hidden border-b border-zinc-800/60">
+                  {project.cover_image ? (
+                    <>
+                      <Image
+                        src={project.cover_image}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-700 select-none"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30 group-hover:via-black/40 transition-colors duration-500" />
+                    </>
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-br from-zinc-950 to-[#101010]" />
+                  )}
+
+                  <div className="relative z-10 flex items-center justify-between">
+                    <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-black/75 border border-zinc-700/80 backdrop-blur-md">
                       <Building2 className="w-3.5 h-3.5 text-gold-500" />
                       <span className="text-xs font-mono text-white font-medium">{clientName}</span>
                     </div>
 
-                    <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400">
+                    <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-full bg-black/75 border border-zinc-800 text-zinc-300 backdrop-blur-md">
                       {project.status || 'Verified'}
                     </span>
                   </div>
 
-                  <div className="py-4 text-center">
-                    <span className="font-display font-black text-6xl text-zinc-800 group-hover:text-gold-500/30 transition-colors select-none tracking-tighter">
-                      {clientName.slice(0, 2).toUpperCase()}
-                    </span>
-                  </div>
+                  {!project.cover_image && (
+                    <div className="relative z-10 py-6 text-center">
+                      <span className="font-display font-black text-6xl text-zinc-800 group-hover:text-gold-500/30 transition-colors select-none tracking-tighter">
+                        {clientName.slice(0, 2).toUpperCase()}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Content */}

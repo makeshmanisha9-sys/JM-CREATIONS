@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import NextLink from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, FolderGit2, CheckCircle2, Sparkles, Building2, ExternalLink } from 'lucide-react';
 import { Project, Client } from '@/lib/types';
@@ -121,39 +122,54 @@ export default function PortfolioGalleryScene({ projects, clients }: PortfolioGa
                   transition={{ duration: 0.5, delay: index * 0.05 }}
                   className={`${colSpan} group relative rounded-3xl bg-[#141414] border border-zinc-800/80 hover:border-gold-500/50 overflow-hidden transition-all duration-500 flex flex-col justify-between`}
                 >
-                  {/* Top Visual Card Area with Geometric Ambient Monogram */}
-                  <div className="relative aspect-[16/10] w-full bg-gradient-to-br from-zinc-900 via-zinc-950 to-black p-8 flex flex-col justify-between overflow-hidden">
-                    {/* Background Noise & Radial Light */}
-                    <div className="absolute inset-0 bg-dark-radial opacity-60 group-hover:opacity-100 transition-opacity" />
-                    <div className="absolute -right-8 -bottom-8 w-44 h-44 rounded-full bg-gold-500/10 blur-3xl group-hover:bg-gold-500/20 transition-all duration-700" />
+                  {/* Top Visual Card Area with High-Impact Imagery */}
+                  <div className="relative aspect-[16/10] w-full bg-zinc-950 p-6 sm:p-8 flex flex-col justify-between overflow-hidden">
+                    {project.cover_image ? (
+                      <>
+                        <Image
+                          src={project.cover_image}
+                          alt={project.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className="object-cover object-center group-hover:scale-105 transition-transform duration-700 select-none"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30 group-hover:via-black/40 transition-colors duration-500" />
+                      </>
+                    ) : (
+                      <>
+                        <div className="absolute inset-0 bg-dark-radial opacity-60 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute -right-8 -bottom-8 w-44 h-44 rounded-full bg-gold-500/10 blur-3xl group-hover:bg-gold-500/20 transition-all duration-700" />
+                        <div className="relative z-10 flex flex-col items-center justify-center py-6 text-center">
+                          <span className="font-display font-black text-5xl sm:text-7xl text-zinc-800 group-hover:text-gold-500/30 transition-colors duration-500 tracking-tighter select-none">
+                            {clientName.slice(0, 2).toUpperCase()}
+                          </span>
+                        </div>
+                      </>
+                    )}
 
                     {/* Top Row: Client badge & Project Status */}
                     <div className="relative z-10 flex items-center justify-between">
-                      <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-700 backdrop-blur-md">
+                      <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-black/75 border border-zinc-700/80 backdrop-blur-md">
                         <Building2 className="w-3 h-3 text-gold-500" />
                         <span className="text-[11px] font-mono font-medium text-white tracking-wide">
                           {clientName}
                         </span>
                       </div>
 
-                      <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-full bg-zinc-900/90 border border-zinc-800 text-zinc-400">
+                      <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-full bg-black/75 border border-zinc-800 text-zinc-300 backdrop-blur-md">
                         {project.status || 'Verified Case'}
                       </span>
                     </div>
 
-                    {/* Center Monogram / Typographic Mark */}
-                    <div className="relative z-10 flex flex-col items-center justify-center py-6 text-center">
-                      <span className="font-display font-black text-5xl sm:text-7xl text-zinc-800 group-hover:text-gold-500/30 transition-colors duration-500 tracking-tighter select-none">
-                        {clientName.slice(0, 2).toUpperCase()}
-                      </span>
-                    </div>
+                    {/* Spacer when image is present */}
+                    {project.cover_image && <div className="relative z-10 my-auto" />}
 
                     {/* Deliverables tags */}
                     <div className="relative z-10 flex flex-wrap gap-1.5">
                       {project.deliverables && project.deliverables.slice(0, 3).map((item, idx) => (
                         <span
                           key={idx}
-                          className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-zinc-900/80 text-zinc-300 border border-zinc-800 backdrop-blur-sm"
+                          className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-black/75 text-zinc-200 border border-zinc-700/60 backdrop-blur-md"
                         >
                           {item}
                         </span>

@@ -110,9 +110,9 @@ if (!g.__jm_memoryAnalyticsEvents) {
 
 if (!g.__jm_memorySettings) g.__jm_memorySettings = { ...INITIAL_SETTINGS };
 if (!g.__jm_memoryServices) g.__jm_memoryServices = [...INITIAL_SERVICES];
-if (!g.__jm_memoryClients) g.__jm_memoryClients = [...INITIAL_CLIENTS];
-if (!g.__jm_memoryProjects) g.__jm_memoryProjects = [...INITIAL_PROJECTS];
-if (!g.__jm_memoryBlogPosts) g.__jm_memoryBlogPosts = [...INITIAL_BLOG_POSTS];
+g.__jm_memoryClients = [...INITIAL_CLIENTS];
+g.__jm_memoryProjects = [...INITIAL_PROJECTS];
+g.__jm_memoryBlogPosts = [...INITIAL_BLOG_POSTS];
 if (!g.__jm_memoryCareers) g.__jm_memoryCareers = [...INITIAL_CAREERS];
 if (!g.__jm_memoryTestimonials) g.__jm_memoryTestimonials = [...INITIAL_TESTIMONIALS];
 

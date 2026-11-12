@@ -2,6 +2,7 @@
 
 import React from 'react';
 import NextLink from 'next/link';
+import Image from 'next/image';
 import { ArrowUpRight, BookOpen, Clock, Calendar, Sparkles } from 'lucide-react';
 import { BlogPost } from '@/lib/types';
 
@@ -55,11 +56,25 @@ export default function JournalScene({ posts }: JournalSceneProps) {
             <NextLink
               key={post.id || post.slug}
               href={`/blog/${post.slug}`}
-              className="group flex flex-col justify-between p-8 rounded-3xl bg-[#141414] border border-zinc-800/80 hover:border-gold-500/50 transition-all duration-300"
+              className="group flex flex-col justify-between p-6 sm:p-7 rounded-3xl bg-[#141414] border border-zinc-800/80 hover:border-gold-500/50 hover:bg-[#181818] transition-all duration-300 overflow-hidden"
             >
               <div>
-                <div className="flex items-center justify-between text-[11px] font-mono text-zinc-500 mb-6">
-                  <span className="text-gold-500">[ 0{idx + 1} ]</span>
+                {/* Visual Article Cover Image */}
+                {post.cover_image && (
+                  <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden mb-6 bg-zinc-900 border border-zinc-800">
+                    <Image
+                      src={post.cover_image}
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700 select-none"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  </div>
+                )}
+
+                <div className="flex items-center justify-between text-[11px] font-mono text-zinc-500 mb-4">
+                  <span className="text-gold-500 font-semibold">[ 0{idx + 1} ]</span>
                   <div className="flex items-center gap-3">
                     {post.read_time && (
                       <span className="flex items-center gap-1">
@@ -70,7 +85,7 @@ export default function JournalScene({ posts }: JournalSceneProps) {
                   </div>
                 </div>
 
-                <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800 text-zinc-300 mb-4 inline-block">
+                <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800 text-zinc-300 mb-3 inline-block">
                   {post.category?.name || 'Perspective'}
                 </span>
 

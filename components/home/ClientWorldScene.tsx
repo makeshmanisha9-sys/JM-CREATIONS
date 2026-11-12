@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import NextLink from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Building2,
@@ -132,8 +133,12 @@ export default function ClientWorldScene({ clients }: ClientWorldSceneProps) {
                 onClick={() => setSelectedClient(client)}
                 className="cursor-pointer group flex items-center gap-3 px-6 py-3 rounded-2xl bg-[#121212] border border-zinc-800/80 hover:border-gold-500/60 hover:bg-[#161616] transition-all duration-300"
               >
-                <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 group-hover:border-gold-500/50 flex items-center justify-center text-gold-500 font-display font-bold text-xs">
-                  {client.name.slice(0, 2).toUpperCase()}
+                <div className="w-8 h-8 rounded-lg overflow-hidden bg-zinc-900 border border-zinc-800 group-hover:border-gold-500/50 flex items-center justify-center text-gold-500 font-display font-bold text-xs relative shrink-0">
+                  {client.logo_url ? (
+                    <Image src={client.logo_url} alt={client.name} fill sizes="32px" className="object-cover" />
+                  ) : (
+                    client.name.slice(0, 2).toUpperCase()
+                  )}
                 </div>
                 <div className="text-left">
                   <div className="text-xs font-display font-bold text-white group-hover:text-gold-400 transition-colors">
@@ -164,8 +169,12 @@ export default function ClientWorldScene({ clients }: ClientWorldSceneProps) {
                 onClick={() => setSelectedClient(client)}
                 className="cursor-pointer group flex items-center gap-3 px-6 py-3 rounded-2xl bg-[#121212] border border-zinc-800/80 hover:border-gold-500/60 hover:bg-[#161616] transition-all duration-300"
               >
-                <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 group-hover:border-gold-500/50 flex items-center justify-center text-gold-500 font-display font-bold text-xs">
-                  {client.name.slice(0, 2).toUpperCase()}
+                <div className="w-8 h-8 rounded-lg overflow-hidden bg-zinc-900 border border-zinc-800 group-hover:border-gold-500/50 flex items-center justify-center text-gold-500 font-display font-bold text-xs relative shrink-0">
+                  {client.logo_url ? (
+                    <Image src={client.logo_url} alt={client.name} fill sizes="32px" className="object-cover" />
+                  ) : (
+                    client.name.slice(0, 2).toUpperCase()
+                  )}
                 </div>
                 <div className="text-left">
                   <div className="text-xs font-display font-bold text-white group-hover:text-gold-400 transition-colors">
@@ -222,8 +231,12 @@ export default function ClientWorldScene({ clients }: ClientWorldSceneProps) {
                 }`}
               >
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-gold-500 font-display font-bold text-sm mb-4">
-                    {client.name.slice(0, 2).toUpperCase()}
+                  <div className="w-10 h-10 rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 flex items-center justify-center text-gold-500 font-display font-bold text-sm mb-4 relative shrink-0">
+                    {client.logo_url ? (
+                      <Image src={client.logo_url} alt={client.name} fill sizes="40px" className="object-cover" />
+                    ) : (
+                      client.name.slice(0, 2).toUpperCase()
+                    )}
                   </div>
                   <h4 className="font-display text-sm font-bold text-white line-clamp-1">
                     {client.name}
