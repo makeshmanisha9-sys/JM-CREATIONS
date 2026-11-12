@@ -648,7 +648,6 @@ export const INITIAL_BLOG_POSTS: BlogPost[] = [
     meta_description: 'Strategic guide for founders navigating legal registration, branding architecture, and customer lead acquisition.',
     read_time: '6 min read',
   },
-,
   {
     id: 'post-1',
     title: 'Building an End-to-End Digital Presence: Strategy Before Tools',
