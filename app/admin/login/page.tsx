@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ShieldCheck, Lock, Mail, ArrowRight, Loader2, AlertCircle } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
+import BrandLogo from '@/components/BrandLogo';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -64,9 +65,7 @@ export default function AdminLoginPage() {
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent"></div>
 
         <div className="text-center space-y-2 mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-zinc-900 border border-gold-500/40 text-gold-500 flex items-center justify-center mx-auto shadow-gold-glow">
-            <Lock className="w-6 h-6" />
-          </div>
+          <BrandLogo size="lg" className="justify-center mb-4" />
           <h1 className="text-2xl font-bold text-white tracking-tight">JM Creations Admin Portal</h1>
           <p className="text-xs text-zinc-400">
             Secure authentication for authorized staff & management

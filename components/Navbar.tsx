@@ -18,6 +18,7 @@ import {
   Facebook,
 } from 'lucide-react';
 import { SiteSettings } from '@/lib/types';
+import BrandLogo from '@/components/BrandLogo';
 
 interface NavbarProps {
   settings?: SiteSettings;
@@ -105,19 +106,7 @@ export default function Navbar({ settings }: NavbarProps) {
           <div className="flex items-center justify-between">
             {/* Brand Logo & Corporate Badge */}
             <NextLink href="/" data-cursor="home" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-gold-500/40 flex items-center justify-center shadow-gold-glow group-hover:border-gold-500 transition-colors">
-                <span className="font-display font-extrabold text-base tracking-wider text-gold-500 group-hover:scale-105 transition-transform">
-                  JM
-                </span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-display font-black text-lg tracking-tight text-white group-hover:text-gold-400 transition-colors">
-                  JM CREATIONS
-                </span>
-                <span className="text-[9px] font-mono tracking-widest text-zinc-400 uppercase">
-                  Jina Groups Enterprise
-                </span>
-              </div>
+              <BrandLogo size="md" showText subtext="Jina Groups Enterprise" />
             </NextLink>
 
             {/* Desktop Navigation Links */}
@@ -206,17 +195,12 @@ export default function Navbar({ settings }: NavbarProps) {
             {/* Top Bar inside Drawer */}
             <div className="max-w-7xl mx-auto w-full flex items-center justify-between border-b border-zinc-900 pb-6">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-gold-500/40 flex items-center justify-center text-gold-500 font-display font-bold text-sm">
-                  JM
-                </div>
-                <div>
-                  <span className="font-display font-bold text-white text-sm block">
-                    JM CREATIONS ARCHITECTURE
-                  </span>
-                  <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">
-                    Part of Jina Groups of Company Pvt. Ltd.
-                  </span>
-                </div>
+                <BrandLogo
+                  size="md"
+                  showText
+                  textClassName="text-sm font-bold"
+                  subtext="Part of Jina Groups of Company Pvt. Ltd."
+                />
               </div>
 
               <button

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function CinematicPreloader() {
@@ -48,16 +49,21 @@ export default function CinematicPreloader() {
               initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="w-16 h-16 rounded-2xl bg-zinc-900/90 border border-gold-500/40 flex items-center justify-center shadow-gold-glow mb-6 relative overflow-hidden"
+              className="w-20 h-20 rounded-2xl bg-[#ffd255] border border-gold-500/60 flex items-center justify-center shadow-gold-glow-lg mb-6 relative overflow-hidden"
             >
-              <span className="font-display font-extrabold text-2xl tracking-wider text-gold-500">
-                JM
-              </span>
+              <Image
+                src="/images/logo-icon.png"
+                alt="JM Creations Official Logo"
+                width={80}
+                height={80}
+                priority
+                className="w-full h-full object-cover select-none"
+              />
               <motion.div
                 initial={{ x: '-100%' }}
                 animate={{ x: '100%' }}
                 transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-400/30 to-transparent"
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none"
               />
             </motion.div>
 

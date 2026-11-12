@@ -17,6 +17,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { SiteSettings, SocialLink } from '@/lib/types';
+import BrandLogo from '@/components/BrandLogo';
 
 interface FooterProps {
   settings?: SiteSettings;
@@ -87,19 +88,12 @@ export default function Footer({ settings, socialLinks }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
           {/* Col 1: Brand & Parent Company Statement (5 cols) */}
           <div className="lg:col-span-5 space-y-6 text-left">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-gold-500/40 flex items-center justify-center text-gold-500 font-display font-extrabold text-base">
-                JM
-              </div>
-              <div>
-                <span className="font-display font-black text-xl tracking-tight text-white block">
-                  JM CREATIONS
-                </span>
-                <span className="text-[9px] font-mono tracking-widest text-zinc-400 uppercase">
-                  Part of Jina Groups of Company Pvt. Ltd.
-                </span>
-              </div>
-            </div>
+            <BrandLogo
+              size="md"
+              showText
+              textClassName="text-xl"
+              subtext="Part of Jina Groups of Company Pvt. Ltd."
+            />
 
             <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed max-w-md">
               {settings?.parent_company_relationship ||

@@ -17,6 +17,7 @@ import {
   ExternalLink,
   Shield,
 } from 'lucide-react';
+import BrandLogo from '@/components/BrandLogo';
 
 export default function AdminSidebar() {
   const pathname = usePathname();
@@ -54,9 +55,7 @@ export default function AdminSidebar() {
         {/* Brand Header */}
         <div className="p-6 border-b border-zinc-800">
           <NextLink href="/" target="_blank" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-lg bg-zinc-900 border border-gold-500/40 flex items-center justify-center font-bold text-gold-500 text-sm">
-              JM
-            </div>
+            <BrandLogo size="sm" />
             <div>
               <div className="text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
                 <span>JM Creations</span>

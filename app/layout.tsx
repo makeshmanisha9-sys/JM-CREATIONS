@@ -56,6 +56,11 @@ export async function generateMetadata(): Promise<Metadata> {
       index: true,
       follow: true,
     },
+    icons: {
+      icon: '/favicon.ico',
+      shortcut: '/favicon.png',
+      apple: '/apple-touch-icon.png',
+    },
   };
 }
 
@@ -70,7 +75,9 @@ export default async function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className="min-h-screen bg-[#080808] text-zinc-100 flex flex-col antialiased selection:bg-gold-500 selection:text-black relative">
         {/* Preloader & Ambient Studio Utilities */}
