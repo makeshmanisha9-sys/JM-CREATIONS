@@ -198,13 +198,6 @@ export default function Footer({ settings, socialLinks }: FooterProps) {
         </div>
       </div>
 
-      {/* Massive Architectural Display Typography: JM CREATIONS */}
-      <div className="border-t border-zinc-900/80 pt-8 pb-4 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
-        <h2 className="font-display font-black text-[12vw] tracking-tighter leading-none text-zinc-900 hover:text-zinc-800 transition-colors duration-500 select-none">
-          JM CREATIONS
-        </h2>
-      </div>
-
       {/* Bottom Legal & Rights Bar */}
       <div className="border-t border-zinc-900/80 py-6 px-4 sm:px-6 lg:px-8 bg-black/60">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500 text-center sm:text-left">
